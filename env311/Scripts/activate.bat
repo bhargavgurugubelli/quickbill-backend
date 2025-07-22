@@ -8,7 +8,7 @@ if defined _OLD_CODEPAGE (
     "%SystemRoot%\System32\chcp.com" 65001 > nul
 )
 
-set VIRTUAL_ENV=C:\Users\gurug\OneDrive\Desktop\django-Saas-main\backend\env311
+set VIRTUAL_ENV=C:\Users\gurug\OneDrive\Desktop\quickbill-backend\env311
 
 if not defined PROMPT set PROMPT=$P$G
 
