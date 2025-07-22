@@ -1,0 +1,14 @@
+services:
+  - type: web
+    name: quickbill-backend
+    env: python
+    rootDir: .  # 👈 Make sure this is here
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn backend.wsgi:application
+    envVars:
+      - key: DJANGO_SETTINGS_MODULE
+        value: backend.settings
+      - key: SECRET_KEY
+        generateValue: true
+      - key: DEBUG
+        value: True
