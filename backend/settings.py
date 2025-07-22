@@ -24,7 +24,8 @@ SECRET_KEY = 'k@0(vgggl139$$91q50gfdu%lq8)%*gp@0!(v16l=iyz(m6zrw'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS =  ['.onrender.com']
+ALLOWED_HOSTS = ['.railway.app', 'quickbill-backend-production.up.railway.app', 'localhost', '127.0.0.1']
+
 
 # Application definition
 
@@ -131,9 +132,9 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, "static", "custom"),
-]
+# STATICFILES_DIRS = [
+#     os.path.join(BASE_DIR, "static", "custom"),
+# ]
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
