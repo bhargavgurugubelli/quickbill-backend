@@ -14,7 +14,6 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 from decouple import config
-from dotenv import load_dotenv
 from datetime import timedelta
 
 
