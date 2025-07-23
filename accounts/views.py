@@ -7,6 +7,8 @@ from rest_framework.response import Response
 from django.contrib.auth import get_user_model
 from rest_framework.permissions import IsAuthenticated
 from rest_framework.decorators import permission_classes
+from django.http import JsonResponse
+from django.views.decorators.csrf import csrf_exempt
 
 User = get_user_model()
 
@@ -86,3 +88,9 @@ def get_user_info(request):
     return Response({
         "mobile_number": user.mobile_number
     })
+
+
+
+@csrf_exempt
+def test_connection(request):
+    return JsonResponse({"status": "Backend is connected!"})

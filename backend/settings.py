@@ -14,6 +14,8 @@ from pathlib import Path
 from decouple import config
 import dj_database_url
 from decouple import config
+from dotenv import load_dotenv
+from datetime import timedelta
 
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -38,6 +40,7 @@ ALLOWED_HOSTS = ['*']
 # Application definition
 
 INSTALLED_APPS = [
+    'corsheaders'
     'jazzmin',                          # Optional: modern admin UI
     'django.contrib.admin',
     'django.contrib.auth',             # ✅ Required for admin login
@@ -45,6 +48,9 @@ INSTALLED_APPS = [
     'django.contrib.sessions',         # ✅ Required for admin sessions
     'django.contrib.messages',         # ✅ Admin uses messages framework
     'django.contrib.staticfiles',
+    'rest_framework',
+    'rest_framework_simplejwt',
+    'rest_framework_simplejwt.token_blacklist',
 
     # Third-party
     'rest_framework',
@@ -76,6 +82,7 @@ REST_FRAMEWORK = {
 MIDDLEWARE = [
     'whitenoise.middleware.WhiteNoiseMiddleware',
     'corsheaders.middleware.CorsMiddleware',
+
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
@@ -205,6 +212,11 @@ LOGGING = {
 # CORS
 CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000',
+    "https://quickbill-frontend.vercel.app",
+]
+
+CSRF_TRUSTED_ORIGINS = [
+    "https://quickbill-frontend.vercel.app",
 ]
 
 # Custom Admin
@@ -243,3 +255,16 @@ STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 WHITENOISE_KEEP_ONLY_HASHED_FILES = False
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedStaticFilesStorage'
+
+
+SIMPLE_JWT = {
+    "ACCESS_TOKEN_LIFETIME": timedelta(days=5),
+    "REFRESH_TOKEN_LIFETIME": timedelta(days=10),
+    "ROTATE_REFRESH_TOKENS": False,
+    "BLACKLIST_AFTER_ROTATION": True,
+    "AUTH_HEADER_TYPES": ("Bearer",),
+    "AUTH_COOKIE": "access_token",  # Cookie name for JWT
+    "AUTH_COOKIE_HTTP_ONLY": True,
+    "AUTH_COOKIE_SECURE": True,     # Set True in production with HTTPS
+    "AUTH_COOKIE_SAMESITE": "Lax",
+}
